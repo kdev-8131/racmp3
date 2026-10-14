@@ -1,8 +1,8 @@
 {
   "name": "racmp3",
   "productName": "RacMp3",
-  "version": "1.0.0",
-  "description": "RacMp3 - lecteur MP3",
+  "version": "1.1.0",
+  "description": "RacMp3 - convertisseur MP4 vers MP3",
   "main": "electron/main.js",
   "scripts": {
     "dev": "concurrently -k \"vite\" \"wait-on http://localhost:5173 && cross-env VITE_DEV=1 electron .\"",
@@ -16,19 +16,25 @@
     "files": [
       "dist/**",
       "electron/**",
+      "build/icon.png",
       "package.json"
     ],
     "asarUnpack": [
       "node_modules/ffmpeg-static/**"
     ],
     "win": {
-      "target": ["nsis", "portable"]
+      "target": [
+        "nsis",
+        "portable"
+      ],
+      "icon": "build/icon.png"
     },
     "nsis": {
       "oneClick": false,
       "perMachine": false,
       "allowToChangeInstallationDirectory": true,
-      "artifactName": "RacMp3-${version}-installation.exe"
+      "artifactName": "RacMp3-${version}-installation.exe",
+      "createDesktopShortcut": true
     },
     "portable": {
       "artifactName": "RacMp3-${version}-portable.exe"
